@@ -79,8 +79,6 @@ export class TodoManager {
   async delete(id: string): Promise<void> {
     const todos = await this.list();
     const newTodos = todos.filter((todo) => todo.id !== id);
-    await this.kv.put(this.todosKey, JSON.stringify(newTodos), {
-      expirationTtl: 300,
-    });
+    await this.kv.put(this.todosKey, JSON.stringify(newTodos));
   }
 }
